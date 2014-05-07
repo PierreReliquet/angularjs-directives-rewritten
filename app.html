@@ -1,0 +1,41 @@
+<html>
+    <head>
+    </head>
+    <body ng-app="testApp" znk-controller="TestController" znk-init="foo=['bar1', 'bar2', 'bar3']; foo1='Intialized value'">
+        
+        <h2>znkModel</h2>
+        <label>Input : </label><input type="text" znk-model="dynamicValue2" />
+        <br />
+        <label>Textarea : </label><textarea znk-model="dynamicValue2"></textarea>
+        
+        <h2>znkClick</h2>
+        <button znk-click="dynamicValue2 = 'reset';">Reset the input</button>
+        <button znk-click="alert()">Alert</button>
+        
+        <h2>znkBind</h2>
+        <p znk-bind="dynamicValue"></p>
+        <p znk-bind="dynamicValue2"></p>
+        <p znk-bind="foo1"></p>
+        
+        <h2>znkShow</h2>
+        <label>Visibility:</label><input type="checkbox" znk-model="visible" />
+        <span znk-show="visible">I'm shown when checked!</span>
+        <span znk-show="!visible">I'm shown when unchecked!</span>
+        
+        <h2>znkRepeat</h2>
+        <ul>
+            <li znk-repeat="e in foo">{{e}}</li>
+        </ul>
+        <script src="angular.js"></script>
+        <script src="znkDirectives.js"></script>
+        <script>
+            angular.module("testApp", ['znkDirectives'])
+            .controller('TestController', function($scope) {
+                $scope.alert = function() {
+                    window.alert('foo');
+                }
+            });
+            
+        </script>
+    </body>
+</html>
